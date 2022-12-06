@@ -1,0 +1,16 @@
+
+[Unit]
+Description=AFL StreamDeck Support Service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python /home/pi/afl-streamdeck/aflsd-linux.py
+WorkingDirectory=/home/pi/afl-streamdeck/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+RestartSec=30
+User=pi
+
+[Install]
+WantedBy=multi-user.target
