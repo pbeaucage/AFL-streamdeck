@@ -247,9 +247,9 @@ if __name__ == "__main__":
     load_client = Client(ip='piloader',port=5000)
     load_client.login('SDStatus')
     
-    #inst_client = load_client
+    inst_client = load_client
     
-    inst_client = Client(ip='id3b.classe.cornell.edu',port=5000)
+    inst_client = Client(ip='pispectrometer',port=5050)
     inst_client.login('SDStatus')
     
     robot_client = Client(ip='piot2',port=5000)
@@ -270,10 +270,10 @@ if __name__ == "__main__":
                    'status_callback':AFL_sd_server_status(load_client)
                  }
     keydata[5] = {'name':'instpause','action':'state',
-                  'Paused_appearance':{'icon':'','font':'FreeSans.ttf','label':'Instrument\nPaused','icon_text':'🎸▶️','icon_font':'','icon_color':'red'},
+                  'Paused_appearance':{'icon':'','font':'FreeSans.ttf','label':'Spectro\nPaused','icon_text':'🎸▶️','icon_font':'','icon_color':'red'},
                   'Error_appearance':{'icon':'','font':'FreeSans.ttf','label':'Connection\nError','icon_text':'🎸⚠️','icon_font':'','icon_color':'red'},
-                  'Active_appearance':{'icon':'','font':'FreeSans.ttf','label':'Instrument\nRunning','icon_text':'🎸⏸️','icon_font':'','icon_color':'green'},
-                  'Ready_appearance':{'icon':'','font':'FreeSans.ttf','label':'Instrument\nIdle','icon_text':'🎸⏸️','icon_font':'','icon_color':'yellow'},
+                  'Active_appearance':{'icon':'','font':'FreeSans.ttf','label':'Spectro\nRunning','icon_text':'🎸⏸️','icon_font':'','icon_color':'green'},
+                  'Ready_appearance':{'icon':'','font':'FreeSans.ttf','label':'Spectro\nIdle','icon_text':'🎸⏸️','icon_font':'','icon_color':'yellow'},
                    'callback':AFL_sd_toggle_pause(inst_client),
                    'status_type':'state',
                    'status_callback':AFL_sd_server_status(inst_client)
@@ -297,7 +297,7 @@ if __name__ == "__main__":
     
     keydata[4] = {'name':'calibrate','action':'momentary',
                    'appearance':{'icon':'','font':'FreeSans.ttf','label':'Calibrate\nSensors','icon_text':'📏','icon_font':'','icon_color':'red'},
-                   'callback':AFL_sd_enqueue(load_client,'resetSensor')}
+                   'callback':AFL_sd_enqueue(load_client,'calibrate_sensor')}
         
     
     keydata[12] = {'name':'refill','action':'momentary',
